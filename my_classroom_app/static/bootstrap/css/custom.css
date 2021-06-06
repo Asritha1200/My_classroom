@@ -1,0 +1,12 @@
+a{
+    text-align: center;
+    text-decoration: none;
+}
+.brightness {
+    background-color: white;
+    display: inline-block;
+
+}
+.brightness img:hover {
+    opacity: .5;
+}

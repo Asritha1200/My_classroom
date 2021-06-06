@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 
+    <title>Document</title>
+    {% load static %} 
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css'%}">
+    
+    <link rel="stylesheet" href="{% static 'bootstrap/css/custom.css'%}">
+   
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{% url 'index' %}">My Classroom</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+              <a class="nav-link text-capitalize">name</a>
+          </li>
+          <li class="nav-item">
+              <a class="nav-link" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+ 
+
+  <div class="container-fluid bs-docs-grid ">
+<div class="row show-grid">
+<div class="col-md-8 mt-5">
+<div class="row show-grid">
+
+  <div class="col-xl-2 p-3">
+    <div class="pic">
+<a href="#"  ><img src="{% static 'images/009-user.png'%}"  class="img-thumbnail"/> <figcaption class="figure-caption text-center font-weight-bold">profile</figcaption></a>
+</div>
+  </div>
+
+  <div class="col-xl-2 p-3">
+    <div class="pic">
+      <a href="#"  ><img src="{% static 'images/004-attendant-list.png'%}"  class="img-thumbnail" class="w-100" /><figcaption class="figure-caption text-center font-weight-bold">Attendance</figcaption></a>
+    </div>
+    </div>
+    
+  
+<div class="col-xl-2 p-3">
+<div class="pic">
+  <a href="#"  ><img src="{% static 'images/003-schedule.png'%}"  class="img-thumbnail" class="w-100" /><figcaption class="figure-caption text-center font-weight-bold">Time-table</figcaption></a>
+</div>
+</div>
+
+  
+<div class="col-xl-2 p-3">
+  <div class="pic">
+    <a href="#"  ><img src="{% static 'images/007-document.png'%}"  class="img-thumbnail" class="w-100" /><figcaption class="figure-caption text-center font-weight-bold">To-Do</figcaption></a>
+  </div>
+  </div>
+  
+  
+  <div class="col-xl-2 p-3">
+    <div class="pic">
+      <a href="#"  ><img src="{% static 'images/006-learning.png'%}"  class="img-thumbnail" class="w-100" /><figcaption class="figure-caption text-center font-weight-bold">Mentor-buddy</figcaption></a>
+    </div>
+    </div>
+     
+
+  
+    <div class="col-xl-2 p-3">
+      <div class="pic">
+        <a href="#"  ><img src="{% static 'images/005-score.png'%}"  class="img-thumbnail" class="w-100" /><figcaption class="figure-caption text-center font-weight-bold">Internals</figcaption></a>
+      </div>
+      </div>
+      
+  
+      <div class="col-xl-2 p-3">
+        <div class="pic">
+          <a href="#"  ><img src="{% static 'images/008-certificate.png'%}"  class="img-thumbnail" class="w-100" /><figcaption class="figure-caption text-center font-weight-bold">Externals</figcaption></a>
+        </div>
+        </div>
+        
+  
+</div>
+</div>
+
+
+     
+  
+      <div class="col-xl-4 mt-5 p-3">
+        <div class="p-3 border bg-light"><table class="table table-hover text-center">
+          <thead class="bg-dark text-white">
+              <tr>
+                  
+                  <th>News and announcments</th>
+                  
+              </tr>
+          </thead>
+          <tbody>
+              <tr>
+                
+                  
+                
+                  <td>
+                      <a href="#" class="btn btn-outline-dark btn-sm">Details</a>
+                  </td>
+              </tr>
+              <tr>
+             
+              
+                  <td>
+                      <a href="#" class="btn btn-outline-dark btn-sm">Details</a>
+                  </td>
+              </tr>
+              <tr>
+                  
+                
+                 
+                  <td>
+                      <a href="#" class="btn btn-outline-dark btn-sm">Details</a>
+                  </td>
+              </tr>
+              <tr>
+                 
+               
+                 
+                  <td>
+                      <a href="#" class="btn btn-outline-dark btn-sm">Details</a>
+                  </td>
+              </tr>
+              <tr>
+                
+                  
+        
+                  <td>
+                      <a href="#" class="btn btn-outline-dark btn-sm">Details</a>
+                  </td>
+              </tr>
+              <tr>
+                
+                  
+                
+                  <td>
+                      <a href="#" class="btn btn-outline-dark btn-sm">Details</a>
+                  </td>
+              </tr>
+              <tr>
+                  
+                 
+               
+                  <td>
+                      <a href="#" class="btn btn-outline-dark btn-sm">Details</a>
+                  </td>
+              </tr>
+              <tr>
+                  
+                 
+                  
+                  <td>
+
+                       
+                      <a href="#" class="btn btn-outline-dark btn-sm">Show all</a>
+                  </td>
+              </tr>
+          </tbody>
+      </table></div>
+        
+        
+
+        
+        
+      </div>
+
+    </div>
+  </div>
+
+
+
+<!--bootstrap js files-->
+<script src="{% static 'bootstrap/js/bootstrap.bundle.min.js'%}"></script>
+
+
+</body>
+</html>
+
+

@@ -1,0 +1,16 @@
+.vscode/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+#*$py.class
+
+# Django:
+db.sqlite3
+media
+
+#Environment
+.Envs/
+
+#Pycache
+.My_classroom/__pycache__/*
