@@ -22,7 +22,7 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-              <a class="nav-link text-capitalize">name</a>
+              <a class="nav-link text-capitalize">{{student.name}}</a>
           </li>
           <li class="nav-item">
               <a class="nav-link" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
@@ -34,7 +34,53 @@
   
  
 
-
+  <div class="container p-5">
+    <div class="row">
+      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title">{{student.name}}</h3>
+          </div>
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="https://gravatar.com/avatar/e60ddbdd1921331df1b59abcecb6a8d1?s=80&amp;d=https://codepen.io/assets/avatars/user-avatar-80x80-fd2a2ade7f141e06f8fd94c000d6ac7a.png" class="img-circle img-responsive"> </div>
+              <div class=" col-md-9 col-lg-9 ">
+                <table class="table table-user-information">
+                  <tbody>
+                    <tr>
+                      <td>USN</td>
+                      <td>{{student.usn}}</td>
+                    </tr>
+                    <tr>
+                      <td>Class</td>
+                      <td>{{student.class_id}}</td>
+                    </tr>
+                    <tr>
+                      <td>Date of Birth</td>
+                      <td>{{student.DOB}}</td>
+                    </tr>
+                    <tr>
+                      <tr>
+                        <td>Gender</td>
+                        <td>{{student.gender}}</td>
+                      </tr>
+                      <tr>
+                        <td>Email</td>
+                        <td>{{student.email}}</td>
+                      </tr>
+                      <td>Phone Number</td>
+                      <td>{{student.phoneno}}
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
      
   
       
