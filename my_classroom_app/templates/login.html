@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
  
-    <title>Document</title>
+    <title>Log In</title>
     {% load static %} 
     <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css'%}">
     
@@ -19,16 +19,15 @@
     <div class="body"></div>
     <div class="grad"></div>
     <div class="header">
-        <div>My<span>Classroom</span></div>
+        <div>My<span>ClassRoom</span></div>
     </div>
     <br>
     <div class="login">
-            {% csrf_token %}
-            <form action="{% url 'login' %}" method="post">
-            <input type="text" placeholder="username" name="user">{{student.user_name}}<br>
-            <input type="password" placeholder="password" name="password">{{student.password}}<br>
-            <input type="button" value="Login">
-            </form>
+            
+            <form class="site-form" action="login" method="POST">
+                {% csrf_token %}
+                {{form}}
+                <input type="submit" value="Login">
     </div>
     <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js'%}"></script>
 
