@@ -15,6 +15,7 @@ class StudentSignUpForm(ModelForm):
     # gender = forms.CharField(label='Male/Female/Other')
     # phone = forms.CharField(label='Your Phone Number')
     # dob = forms.DateField(label='Your DOB')
+    password = forms.CharField(label='Password',widget=forms.PasswordInput)
     class Meta:
         model = student
         fields = ["user_name", "usn", "password", "email", "class_id", "gender","phoneno","DOB"]
