@@ -93,77 +93,23 @@
         <div class="p-3 border bg-light"><table class="table table-hover text-center">
           <thead class="bg-dark text-white">
               <tr>
-                  
-                  <th>News and announcments</th>
+                  <th>Date</th>
+                  <th>Event</th>
                   
               </tr>
           </thead>
           <tbody>
+            {%for event in events%}
               <tr>
-                
-                  
-                
                   <td>
-                      <a href="#" class="btn btn-outline-dark btn-sm">Details</a>
+                      {{event.date}}
+                  </td>
+                  <td>
+                      {{event.text}}
                   </td>
               </tr>
-              <tr>
-             
+              {%endfor%}
               
-                  <td>
-                      <a href="#" class="btn btn-outline-dark btn-sm">Details</a>
-                  </td>
-              </tr>
-              <tr>
-                  
-                
-                 
-                  <td>
-                      <a href="#" class="btn btn-outline-dark btn-sm">Details</a>
-                  </td>
-              </tr>
-              <tr>
-                 
-               
-                 
-                  <td>
-                      <a href="#" class="btn btn-outline-dark btn-sm">Details</a>
-                  </td>
-              </tr>
-              <tr>
-                
-                  
-        
-                  <td>
-                      <a href="#" class="btn btn-outline-dark btn-sm">Details</a>
-                  </td>
-              </tr>
-              <tr>
-                
-                  
-                
-                  <td>
-                      <a href="#" class="btn btn-outline-dark btn-sm">Details</a>
-                  </td>
-              </tr>
-              <tr>
-                  
-                 
-               
-                  <td>
-                      <a href="#" class="btn btn-outline-dark btn-sm">Details</a>
-                  </td>
-              </tr>
-              <tr>
-                  
-                 
-                  
-                  <td>
-
-                       
-                      <a href="#" class="btn btn-outline-dark btn-sm">Show all</a>
-                  </td>
-              </tr>
           </tbody>
       </table></div>
         
