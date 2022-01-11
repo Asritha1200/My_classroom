@@ -107,9 +107,10 @@ def intattd(request):
     att = attendance.objects.all().filter(usn = request.user.usn)
     for att_per in att:
         att_per.avg = (att_per.a1+att_per.a2+att_per.a3)/3
-    print(att)
-    # print(internal_scores)
-    return render(request,"internals&attendance.html",{'att':att})
+    for score in internal_scores:
+        score.final_ia = (score.ia1+score.ia2+score.ia3)/3    
+    print(internal_scores)
+    return render(request,"internals&attendance.html",{'att':att,'scores':internal_scores})
 
 
 def toDo(request):

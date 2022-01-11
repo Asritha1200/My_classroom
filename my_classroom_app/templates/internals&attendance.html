@@ -44,48 +44,15 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <th scope="row">Math</th>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-      </tr>
-      <tr>
-        <th scope="row">Math</th>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-      </tr>
-      <tr>
-        <th scope="row">Math</th>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-      </tr>
-      <tr>
-        <th scope="row">Math</th>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-      </tr>
-      <tr>
-        <th scope="row">Math</th>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-      </tr>
-      <tr>
-        <th scope="row">Math</th>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-        <td>0</td>
-      </tr>
+      {%for score in scores%}
+    <tr>
+      <th scope="row">{{score.course_id}}</th>
+      <td>{{score.ia1}}</td>
+      <td>{{score.ia2}}</td>
+      <td>{{score.ia3}}</td>
+      <td>{{score.final_ia}}</td>
+    </tr>
+   {%endfor%}
      
     </tbody>
   </table>
