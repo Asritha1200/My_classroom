@@ -97,7 +97,7 @@ def timeTable(request):
  
 
 def profile(request):
-    stud = student.objects.get(usn=student_id)
+    stud = request.user
     
 
     return render(request,"profile.html",{'student':stud})
