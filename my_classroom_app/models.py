@@ -1,3 +1,4 @@
+from django.contrib.auth.base_user import AbstractBaseUser
 from django.db import models
 from django.db.models.aggregates import Max
 
@@ -58,8 +59,8 @@ class classroom(models.Model):
 
     
 
-class student(models.Model):
-    usn = models.CharField(max_length=10,primary_key=True)
+class student(AbstractBaseUser):
+    usn = models.IntegerField(max_length=100,primary_key=True)
     user_name = models.CharField(max_length=50)
     password = models.CharField(max_length=15)
     
@@ -68,7 +69,7 @@ class student(models.Model):
     phoneno = models.CharField(max_length = 12)
     email=models.EmailField(max_length = 254)
     DOB=models.DateField()
-
+    USERNAME_FIELD = 'usn'
     def __str__(self):
         return self.usn
 

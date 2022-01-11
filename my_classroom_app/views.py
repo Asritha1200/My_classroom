@@ -7,6 +7,7 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth import login as auth_login
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView
 from my_classroom_app.authentication.backend import StudentBackend
@@ -26,7 +27,8 @@ def signup(request):
     if request.method == 'POST':
         form = StudentSignUpForm(request.POST)
         if form.is_valid():
-            form.save()
+            user = form.save()
+            auth_login(request,user)
             return redirect('/')
     else:
         form = StudentSignUpForm()
@@ -40,11 +42,14 @@ def login(request):
         if form.is_valid():
             usn_ma = form.cleaned_data['usn']
             password_ma = form.cleaned_data['password']
-            user = StudentBackend().authenticate(
+            user = auth.authenticate(
                 usn=usn_ma,password=password_ma)
             if(user):
                 print("Authenticated")
-                return redirect('/')
+                print(user)
+                auth.login(request,user)
+                print('done')
+                return redirect('/index')
             else:
                 return redirect('/accounts/login')    
            
@@ -55,7 +60,7 @@ def login(request):
 def logout(request):
     print("LOGOUT")
 
-@login_required()
+# @login_required()
 def index(request):
         current_user = request.user
         print(current_user)

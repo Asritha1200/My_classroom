@@ -1,3 +1,4 @@
+from django.contrib.auth.backends import BaseBackend
 from django.contrib.auth.hashers import check_password 
 
 from django.contrib.auth.models import User
@@ -5,11 +6,11 @@ from django.contrib.auth.models import User
 from my_classroom_app.models import student
 
 
-class StudentBackend:
+class StudentBackend(BaseBackend):
 
     # Create an authentication method
     # This is called by the standard Django login procedure
-    def authenticate(self, usn=None, password=None):
+    def authenticate(self,request, usn=None, password=None):
 
         try:
             # Try to find a user matching your username
