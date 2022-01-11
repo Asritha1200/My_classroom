@@ -57,9 +57,11 @@ def login(request):
     return render(request,'registration/login.html',{'form':form})        
 
 def logout(request):
+    auth.logout(request)
+    return redirect('/accounts/login')
     print("LOGOUT")
 
-# @login_required()
+@login_required()
 def index(request):
         current_user = request.user
         event=events.objects.all()
