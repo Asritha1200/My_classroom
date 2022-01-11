@@ -106,49 +106,15 @@
     </tr>
   </thead>
   <tbody>
+    {%for att_per in att%}
     <tr>
-      <th scope="row">Math</th>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
+      <th scope="row">{{att_per.course_id}}</th>
+      <td>{{att_per.a1}}</td>
+      <td>{{att_per.a2}}</td>
+      <td>{{att_per.a3}}</td>
+      <td>{{att_per.avg}}</td>
     </tr>
-    <tr>
-      <th scope="row">Math</th>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th scope="row">Math</th>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th scope="row">Math</th>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th scope="row">Math</th>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th scope="row">Math</th>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-      <td>0</td>
-    </tr>
-   
+   {%endfor%}
    
   </tbody>
 </table>

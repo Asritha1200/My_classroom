@@ -104,8 +104,12 @@ def profile(request):
 
 def intattd(request):
     internal_scores = internals.objects.all().filter(usn = request.user.usn)
+    att = attendance.objects.all().filter(usn = request.user.usn)
+    for att_per in att:
+        att_per.avg = (att_per.a1+att_per.a2+att_per.a3)/3
+    print(att)
     # print(internal_scores)
-    return render(request,"internals&attendance.html")
+    return render(request,"internals&attendance.html",{'att':att})
 
 
 def toDo(request):

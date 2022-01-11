@@ -134,9 +134,9 @@ class attendance(models.Model):
 
         usn=self.usn
         course_id=self.course_id
-        sname= classroom.objects.raw('Select * from my_classroom_app_student where class_id=%s',[usn])#sname = student.objects.get(usn=self.usn)
-        cname = classroom.objects.raw('Select * from my_classroom_app_courses where class_id=%s',[course_id])#cname = courses.objects.get(course_id=self.course_id)
-        return '%s : %s' % (sname.user_name, cname.course_name)
+        # sname= classroom.objects.raw('Select * from my_classroom_app_student where class_id=%s',[usn])#sname = student.objects.get(usn=self.usn)
+        # cname = classroom.objects.raw('Select * from my_classroom_app_courses where class_id=%s',[course_id])#cname = courses.objects.get(course_id=self.course_id)
+        return '%s : %s' % (str(usn), course_id)
 
 class internals(models.Model):
     usn = models.ForeignKey(student,on_delete=models.CASCADE)
@@ -150,9 +150,9 @@ class internals(models.Model):
     def __str__(self):
         usn=self.usn
         course_id=self.course_id
-        sname= classroom.objects.raw('Select * from my_classroom_app_student where class_id=%s',[usn])#sname = student.objects.get(usn=self.usn)
-        cname= classroom.objects.raw('Select * from my_classroom_app_courses where class_id=%s',[course_id])#cname = courses.objects.get(course_id=self.course_id)
-        return '%s : %s' % (sname.user_name, cname.course_name)
+        # sname= classroom.objects.raw('Select * from my_classroom_app_student where class_id=%s',[usn])#sname = student.objects.get(usn=self.usn)
+        # cname= classroom.objects.raw('Select * from my_classroom_app_courses where class_id=%s',[course_id])#cname = courses.objects.get(course_id=self.course_id)
+        return '%s : %s' % (str(usn), course_id)
     
 class time_table(models.Model):
     assign= models.ForeignKey(class_courses,on_delete=models.CASCADE)
