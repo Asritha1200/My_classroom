@@ -11,8 +11,8 @@ from django.contrib.auth import login as auth_login
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView
 from my_classroom_app.authentication.backend import StudentBackend
-from my_classroom_app.models import student
 from my_classroom_app.forms.student_form import StudentSignInForm, StudentSignUpForm
+from datetime import *
 
 from .models import branch,sem,classroom,student,prof,time_table,to_do,events,internals,attendance,class_courses,courses
 
@@ -72,8 +72,9 @@ def index(request):
 
 @login_required()
 
-def time_table(request):
+def timeTable(request):
     current_user = request.user
+    
     return render(request,"timetable.html",{})
 
  
@@ -90,10 +91,15 @@ def intattd(request):
     return render(request,"internals&attendance.html")
 
 
-def to_do(request):
-    stud=student.objects.get(usn=student_id)
-    tasks=to_do.objects.get(class_id=classroom_id)
-    return render(request,"to_do.html",{'tasks':tasks,'student':stud})
+def toDo(request):
+    stud=student.objects.get(usn=request.user.usn)
+    tasks=to_do.objects.all().filter(class_id=request.user.class_id)
+    for task in tasks:
+        if(task.due_date<date.today()):
+            task.status = "Overdue"
+        else:
+            task.status = "Due"    
+    return render(request,"to_do.html",{'stud':stud,'tasks':tasks})
 
 @login_required
 def secret_page(request):

@@ -71,6 +71,11 @@ class student(AbstractBaseUser):
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
     DOB=models.DateField()
+    def has_perm(self, perm, obj=None):
+        return self.is_superuser
+
+    def has_module_perms(self, app_label):
+        return self.is_superuser
     USERNAME_FIELD = 'usn'
     def __str__(self):
         return self.usn
@@ -112,7 +117,8 @@ class class_courses(models.Model):
         cr = classroom.objects.raw('Select * from myapp_class_courses where class_id=%s',[class_id])#cr = classroom.objects.get(class_id=self.class_id)
         co= classroom.objects.raw('Select * from myapp_class_courses where course_id=%s',[course_id])#co = courses.objects.get(course_id=self.course_id)
         pr=prof.objects.raw('Select * from myapp_class_courses where prof_id=%s',[prof_id])#pr = prof.objects.get(prof_id=self.prof_id) 
-        return '%s : %s : %s' % (cr.class_id, co.course_name, pr.prof_nmae)
+        
+        return '%s : %s : %s' % (cr.params[0], co.params[0], pr.params[0])
 
 
 
@@ -151,8 +157,9 @@ class internals(models.Model):
 class time_table(models.Model):
     assign= models.ForeignKey(class_courses,on_delete=models.CASCADE)
     day=models.CharField(max_length=20,choices=DAYS_OF_WEEK)
-    time = models.TimeField(choices=time_slots)
-
+    time = models.CharField(choices=time_slots,max_length=100)
+    def __str__(self) : 
+        return str(self)
    
 
 
@@ -162,10 +169,6 @@ class to_do(models.Model):
     text = models.TextField()
     due_date = models.DateField()
     
-    def __str__(self):
-        return self.class_id
-        #cr = classroom.objects.get(class_id=self.class_id)
-        #return '%s' % (cr.class_id)
 
 class events(models.Model):
     date = models.DateTimeField()
