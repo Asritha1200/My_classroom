@@ -74,8 +74,25 @@ def index(request):
 
 def timeTable(request):
     current_user = request.user
-    
-    return render(request,"timetable.html",{})
+    ccs = class_courses.objects.all().filter(class_id = current_user.class_id)
+    tts=[] 
+    for cc in ccs:
+        tts.append(time_table.objects.all().filter(assign=cc))
+        # tts.append()  
+        profs = {}  
+        finaltt=0
+        if len(tts)>0:
+            finaltt = tts[0]
+            for tt in tts:
+                finaltt=finaltt | tt
+        else:
+            finaltt=[]
+
+        for tt in tts:
+            profs[tt[0].assign.course_id] = tt[0].assign.prof_id
+           
+
+    return render(request,"timetable.html",{'time_tables':finaltt,'profs':profs})
 
  
 
@@ -86,8 +103,8 @@ def profile(request):
     return render(request,"profile.html",{'student':stud})
 
 def intattd(request):
-    
-    
+    internal_scores = internals.objects.all().filter(usn = request.user.usn)
+    # print(internal_scores)
     return render(request,"internals&attendance.html")
 
 

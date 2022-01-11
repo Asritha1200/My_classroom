@@ -158,8 +158,6 @@ class time_table(models.Model):
     assign= models.ForeignKey(class_courses,on_delete=models.CASCADE)
     day=models.CharField(max_length=20,choices=DAYS_OF_WEEK)
     time = models.CharField(choices=time_slots,max_length=100)
-    def __str__(self) : 
-        return str(self)
    
 
 

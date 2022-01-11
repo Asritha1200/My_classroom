@@ -6,7 +6,7 @@ urlpatterns=[
     path("",views.index,name="index"),
     path("index/",views.index,name="index"),
     
-    path("student/time_table",views.time_table,name="timetable"),
+    path("student/time_table",views.timeTable,name="timetable"),
     path("student/to_do",views.toDo,name="to_do"),
     path("student/intatt",views.intattd,name="intatt"),
     path("student/profile",views.profile,name="profile"),

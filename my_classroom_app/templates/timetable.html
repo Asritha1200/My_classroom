@@ -40,75 +40,24 @@
     <table class="table table-bordered">
       <thead>
         <tr>
-          <th>Day</th>
-          <th>9:00am-10:00am</th>
-          <th>10:00am-11:00am</th>
-          <th>11:15am-12:00pm</th>
-          <th>12:00pm-12:40pm</th>
-          <th>2:00pm-3:00pm</th>
+          <th scope="col">Subject</th>
+          <th scope="col">Day</th>
+          <th scope="col">Time</th>
+          
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>MON</td>
-          <td>DAA</td>
-          <td>OS</td>
-          <td>OOC</td>
-          <td>MATH</td>
-          <td>mes</td>
-          
-
-        </tr>
-        <tr>
-          <td>TUES</td>
-          <td>DAA</td>
-          <td>OS</td>
-          <td>OOC</td>
-          <td>MATH</td>
-          <td>mes</td>
-          
-
-        </tr>
-        <tr>
-          <td>WED</td>
-          <td>DAA</td>
-          <td>OS</td>
-          <td>OOC</td>
-          <td>MATH</td>
-          <td>mes</td>
-          
-
-        </tr>
-        <tr>
-          <td>THURS</td>
-          <td>DAA</td>
-          <td>OS</td>
-          <td>OOC</td>
-          <td>MATH</td>
-          <td>mes</td>
-          
-
-        </tr>
-        <tr>
-          <td>FRI</td>
-          <td>DAA</td>
-          <td>OS</td>
-          <td>OOC</td>
-          <td>MATH</td>
-          <td>mes</td>
-          
-
-        </tr>
-        <tr>
-          <td>SAT</td>
-          <td>DAA</td>
-          <td>OS</td>
-          <td>OOC</td>
-          <td>MATH</td>
-          <td>mes</td>
-          
-
-        </tr>
+       
+        {%for tt in time_tables%}
+      <tr>
+        <th scope="row">{{tt.assign.course_id}}</th>
+        <td>{{tt.day}}</td>
+        <td>{{tt.time}}</td>
+      
+      </tr>
+     
+     {%endfor%}
+      </tbody>  
         
         
     </table>
@@ -128,50 +77,13 @@
         </tr>
       </thead>
       <tbody>
+        {%for key,value in profs.items%}
         <tr>
-          <td>OS</td>
-          <td>Dr MJS</td>
-          
-          
-
+          <td>{{key}}</td>
+          <td>{{value}}</td>
         </tr>
-        <tr>
-          <td>OS</td>
-          <td>Dr MJS</td>
-          
-          
-
-        </tr>
-        <tr>
-          <td>OS</td>
-          <td>Dr MJS</td>
-          
-          
-
-        </tr>
-        <tr>
-          <td>OS</td>
-          <td>Dr MJS</td>
-          
-          
-
-        </tr>
-        <tr>
-          <td>OS</td>
-          <td>Dr MJS</td>
-          
-          
-
-        </tr>
-        <tr>
-          <td>OS</td>
-          <td>Dr MJS</td>
-          
-          
-
-        </tr>
-
-        
+        {%endfor%}
+       
     </table>
   </div>
   
