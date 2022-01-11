@@ -28,7 +28,7 @@ def signup(request):
         form = StudentSignUpForm(request.POST)
         if form.is_valid():
             user = form.save()
-            auth_login(request,user)
+            auth_login(request,user,backend='my_classroom_app.authentication.backend.StudentBackend')
             return redirect('/')
     else:
         form = StudentSignUpForm()
@@ -46,8 +46,7 @@ def login(request):
                 usn=usn_ma,password=password_ma)
             if(user):
                 print("Authenticated")
-                print(user)
-                auth.login(request,user)
+                auth.login(request,user,backend='my_classroom_app.authentication.backend.StudentBackend')
                 print('done')
                 return redirect('/index')
             else:
@@ -63,7 +62,6 @@ def logout(request):
 # @login_required()
 def index(request):
         current_user = request.user
-        print(current_user)
         event=events.objects.all()
         return render(request,"index.html",{'events':event,'user':current_user})
 
