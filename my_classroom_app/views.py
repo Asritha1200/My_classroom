@@ -103,13 +103,13 @@ def profile(request):
     return render(request,"profile.html",{'student':stud})
 
 def intattd(request):
-    internal_scores = internals.objects.all().filter(usn = request.user.usn)
-    att = attendance.objects.all().filter(usn = request.user.usn)
+    internal_scores = internals.objects.raw("SELECT * from my_classroom_app_internals where usn_id = %s",[request.user.usn])
+    print(str(internal_scores))
+    att = attendance.objects.raw("SELECT * from my_classroom_app_attendance where usn_id = %s",[request.user.usn])
     for att_per in att:
         att_per.avg = (att_per.a1+att_per.a2+att_per.a3)/3
     for score in internal_scores:
         score.final_ia = (score.ia1+score.ia2+score.ia3)/3    
-    print(internal_scores)
     return render(request,"internals&attendance.html",{'att':att,'scores':internal_scores})
 
 
