@@ -64,7 +64,7 @@ def logout(request):
 @login_required()
 def index(request):
         current_user = request.user
-        event=events.objects.all()
+        event=events.objects.raw("SELECT * FROM my_classroom_app_events")
         return render(request,"index.html",{'events':event,'user':current_user})
 
 
@@ -74,23 +74,22 @@ def index(request):
 
 def timeTable(request):
     current_user = request.user
-    ccs = class_courses.objects.all().filter(class_id = current_user.class_id)
+    ccs = class_courses.objects.raw("SELECT * FROM my_classroom_app_class_courses where class_id_id = %s",[str(current_user.class_id)])
+    
     tts=[] 
     for cc in ccs:
-        tts.append(time_table.objects.all().filter(assign=cc))
+        tts.append(time_table.objects.raw("SELECT * FROM my_classroom_app_time_table where assign_id = %s",[str(cc.id)]))
         # tts.append()  
-        profs = {}  
-        finaltt=0
-        if len(tts)>0:
-            finaltt = tts[0]
-            for tt in tts:
-                finaltt=finaltt | tt
-        else:
-            finaltt=[]
+    for tt in tts:
+        for t in tt:
+            print(t) 
+    profs = {}  
+    finaltt = []
 
-        for tt in tts:
-            profs[tt[0].assign.course_id] = tt[0].assign.prof_id
-           
+    for tt in tts:
+        profs[tt[0].assign.course_id] = tt[0].assign.prof_id
+        for t in tt:
+            finaltt.append(t)   
 
     return render(request,"timetable.html",{'time_tables':finaltt,'profs':profs})
 
@@ -115,7 +114,7 @@ def intattd(request):
 
 def toDo(request):
     stud=student.objects.get(usn=request.user.usn)
-    tasks=to_do.objects.all().filter(class_id=request.user.class_id)
+    tasks=to_do.objects.raw("SELECT * from my_classroom_app_to_do where class_id_id = %s",[str(stud.class_id)])
     for task in tasks:
         if(task.due_date<date.today()):
             task.status = "Overdue"
