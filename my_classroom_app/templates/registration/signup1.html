@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 
+    <title>Document</title>
+    {% load static %} 
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css'%}">
+
+    <link rel="stylesheet" href="{% static 'bootstrap/css/signin.css'%}">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/signup.css'%}">
+   
+</head>
+<nav class="navbar navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand">MyClassroom</a>
+    {% if not user.is_authenticated %}
+         
+    
+    <form class="d-flex">
+      <button class="btn btn-outline-success" type="submit"><a href="{% url 'signup' %}">SignUp</a></button>
+      <button class="btn btn-outline-success" type="submit"><a href="{% url 'login' %}">Login</a></button>
+    </form>
+    {% endif %}
+  </div>
+</nav>
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<link href="//db.onlinewebfonts.com/c/a4e256ed67403c6ad5d43937ed48a77b?family=Core+Sans+N+W01+35+Light" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" href="form.css" type="text/css">
+<div class="body-content">
+  <div class="module">
+    <h1>Create an account</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button type="submit" class="btn btn-primary">Sign up</button>
+      </form>
+  </div>
+</div>
+{% endblock %}
+<script src="{% static 'bootstrap/js/bootstrap.bundle.min.js'%}"></script>
+
+
+</body>
+</html>

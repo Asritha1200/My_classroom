@@ -61,10 +61,11 @@ def logout(request):
     return redirect('/accounts/login')
     print("LOGOUT")
 
+
 @login_required()
 def index(request):
         current_user = request.user
-        event=events.objects.all()
+        event=events.objects.raw("SELECT * FROM my_classroom_app_events")
         return render(request,"index.html",{'events':event,'user':current_user})
 
 
@@ -74,23 +75,22 @@ def index(request):
 
 def timeTable(request):
     current_user = request.user
-    ccs = class_courses.objects.all().filter(class_id = current_user.class_id)
+    ccs = class_courses.objects.raw("SELECT * FROM my_classroom_app_class_courses where class_id_id = %s",[str(current_user.class_id)])
+    
     tts=[] 
     for cc in ccs:
-        tts.append(time_table.objects.all().filter(assign=cc))
+        tts.append(time_table.objects.raw("SELECT * FROM my_classroom_app_time_table where assign_id = %s",[str(cc.id)]))
         # tts.append()  
-        profs = {}  
-        finaltt=0
-        if len(tts)>0:
-            finaltt = tts[0]
-            for tt in tts:
-                finaltt=finaltt | tt
-        else:
-            finaltt=[]
+    for tt in tts:
+        for t in tt:
+            print(t) 
+    profs = {}  
+    finaltt = []
 
-        for tt in tts:
-            profs[tt[0].assign.course_id] = tt[0].assign.prof_id
-           
+    for tt in tts:
+        profs[tt[0].assign.course_id] = tt[0].assign.prof_id
+        for t in tt:
+            finaltt.append(t)   
 
     return render(request,"timetable.html",{'time_tables':finaltt,'profs':profs})
 
@@ -103,31 +103,22 @@ def profile(request):
     return render(request,"profile.html",{'student':stud})
 
 def intattd(request):
-    internal_scores = internals.objects.all().filter(usn = request.user.usn)
-    att = attendance.objects.all().filter(usn = request.user.usn)
+    internal_scores = internals.objects.raw("SELECT * from my_classroom_app_internals where usn_id = %s",[request.user.usn])
+    print(str(internal_scores))
+    att = attendance.objects.raw("SELECT * from my_classroom_app_attendance where usn_id = %s",[request.user.usn])
     for att_per in att:
         att_per.avg = (att_per.a1+att_per.a2+att_per.a3)/3
     for score in internal_scores:
-        score.final_ia = (score.ia1+score.ia2+score.ia3)/3    
-    print(internal_scores)
+        score.final_ia = (score.ia1+score.ia2+score.ia3)*30/150 
     return render(request,"internals&attendance.html",{'att':att,'scores':internal_scores})
 
 
 def toDo(request):
     stud=student.objects.get(usn=request.user.usn)
-    tasks=to_do.objects.all().filter(class_id=request.user.class_id)
+    tasks=to_do.objects.raw("SELECT * from my_classroom_app_to_do where class_id_id = %s",[str(stud.class_id)])
     for task in tasks:
         if(task.due_date<date.today()):
             task.status = "Overdue"
         else:
             task.status = "Due"    
     return render(request,"to_do.html",{'stud':stud,'tasks':tasks})
-
-@login_required
-def secret_page(request):
-    return render(request, 'secret_page.html')
-
-
-class SecretPage(LoginRequiredMixin, TemplateView):
-    template_name = 'secret_page.html'
-

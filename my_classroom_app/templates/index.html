@@ -22,7 +22,7 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-              <a class="nav-link text-capitalize">name</a>
+              <a class="nav-link text-capitalize">{{request.user.user_name}}</a>
           </li>
           <li class="nav-item">
               <a class="nav-link" href="{%url 'logout' %}" data-toggle="modal" data-target="#logoutModal">Logout</a>
@@ -40,8 +40,7 @@
 
   <div class="col-xl-2 p-3">
     <div class="pic">
-      {{user.user_name}}
-<a href="{% url 'profile' %}"  ><img src="{% static 'images/009-user.png'%}"  class="img-thumbnail"/> <figcaption class="figure-caption text-center font-weight-bold">profile</figcaption></a>
+      <a href="{% url 'profile' %}"><img src="{% static 'images/009-user.png'%}" class="img-thumbnail" class="w-100" /><figcaption class="figure-caption text-center font-weight-bold">Profile</figcaption></a>
 </div>
   </div>
 

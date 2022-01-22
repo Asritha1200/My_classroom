@@ -78,7 +78,7 @@ class student(AbstractBaseUser):
         return self.is_superuser
     USERNAME_FIELD = 'usn'
     def __str__(self):
-        return self.usn
+        return str(self.usn)
 
 class courses(models.Model):
     course_name=models.CharField(max_length=150)
